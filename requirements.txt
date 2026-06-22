@@ -1,0 +1,19 @@
+fastapi
+uvicorn
+mysql-connector-python
+
+Instrucciones finales para ejecutar:
+Instala dependencias (si no lo has hecho):
+pip install fastapi uvicorn mysql-connector-python
+
+Estructura de carpetas:
+
+api.py (en la carpeta principal)
+
+static/index.html (debes crear la carpeta static y poner el HTML dentro).
+
+Ejecuta:
+python api.py
+
+Accede:
+Desde tu celular: http://192.168.1.14:8050 

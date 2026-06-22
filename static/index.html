@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblia Explicada - Versión Premium</title>
+    <link rel="icon" type="image/png" href="/static/icon-192.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#0d0f12">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/static/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* CSS variables for colors */
+        :root {
+            --bg-color: #0d0f12;
+            --container-bg: rgba(20, 24, 33, 0.7);
+            --card-bg: rgba(28, 33, 45, 0.6);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --accent-color: #d4af37;
+            --accent-hover: #f3c63f;
+            --accent-gradient: linear-gradient(135deg, #ffc107 0%, #ff8c00 100%);
+            --ai-gradient: linear-gradient(135deg, #9b51e0 0%, #3498db 100%);
+            --text-color: #f0f2f5;
+            --text-muted: #9ba1a6;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --glass-blur: blur(12px);
+        }
+
+        body.light-mode {
+            --bg-color: #f6f8fa;
+            --container-bg: rgba(255, 255, 255, 0.8);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --accent-color: #b8860b;
+            --accent-hover: #996515;
+            --accent-gradient: linear-gradient(135deg, #b8860b 0%, #8b6914 100%);
+            --text-color: #1e2229;
+            --text-muted: #626875;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-image: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            margin-top: 40px;
+        }
+
+        /* Header styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: 80px;
+            border-radius: 18px;
+            object-fit: contain;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            border: 1.5px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--text-color), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .theme-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        /* Search Section */
+        .search-wrapper {
+            background: var(--container-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 40px var(--shadow-color);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .input-container {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            font-size: 1.05rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .light-mode input {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        button {
+            padding: 16px 28px;
+            border-radius: 16px;
+            border: none;
+            font-weight: 700;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #000;
+            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            gap: 12px;
+        }
+
+        /* Results section */
+        #resultados {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--accent-color);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 35px var(--shadow-color);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .verse-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        .bible-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-left: 3px solid rgba(255, 255, 255, 0.1);
+            font-style: italic;
+        }
+
+        .light-mode .bible-text {
+            background: rgba(0, 0, 0, 0.03);
+            border-left-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation {
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: var(--text-color);
+        }
+
+        .explanation p {
+            margin-bottom: 12px;
+        }
+
+        .explanation ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .explanation li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .explanation strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* AI Card */
+        .explicacion-ia {
+            background: rgba(30, 20, 50, 0.4);
+            border: 1px solid rgba(155, 81, 224, 0.3);
+            border-left: 6px solid #9b51e0;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .explicacion-ia {
+            background: rgba(155, 81, 224, 0.05);
+        }
+
+        .explicacion-ia:hover {
+            transform: translateY(-4px);
+            border-color: rgba(155, 81, 224, 0.6);
+            box-shadow: 0 16px 35px rgba(155, 81, 224, 0.15);
+        }
+
+        .explicacion-ia h3 {
+            font-size: 1.3rem;
+            color: #af70ec;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-sparkle {
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Loading spinner */
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            gap: 16px;
+            color: var(--text-muted);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--card-bg);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .search-box {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo-title">
+                <img src="/static/icon-192.png" alt="Logo" class="logo-img">
+                <h1>Biblia Explicada</h1>
+            </div>
+            <button class="theme-btn" onclick="toggleModo()">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+            </button>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-box">
+                <div class="input-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="busqueda" placeholder="Ej: Génesis 1:1, Éxodo 20, amor"
+                        onkeypress="handleEnter(event)">
+                </div>
+                <button class="btn-primary" onclick="realizarBusqueda()">Buscar</button>
+            </div>
+            <div class="button-group">
+                <button class="btn-secondary" onclick="cargarAleatorio()">
+                    <span>🎲</span> Descubrir Versículo
+                </button>
+                <button class="btn-secondary" onclick="limpiarBusqueda()">
+                    Limpiar
+                </button>
+            </div>
+        </div>
+
+        <div id="resultados"></div>
+    </div>
+
+    <footer>
+        <p>Reyna Valera 1960</p>
+    </footer>
+
+    <script>
+        // System Theme Auto Detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.body.classList.add('light-mode');
+            actualizarBotonTema();
+        }
+
+        function toggleModo() {
+            document.body.classList.toggle('light-mode');
+            actualizarBotonTema();
+        }
+
+        function actualizarBotonTema() {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (document.body.classList.contains('light-mode')) {
+                icon.innerText = "☀️";
+                text.innerText = "Modo Claro";
+            } else {
+                icon.innerText = "🌙";
+                text.innerText = "Modo Oscuro";
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') realizarBusqueda();
+        }
+
+        function limpiarBusqueda() {
+            document.getElementById('busqueda').value = "";
+            document.getElementById('resultados').innerHTML = "";
+        }
+
+        // A simple format function that cleans and structures explanations
+        // Replaces bold markdown '**text**' with HTML bold, and bullets '●' with lists
+        function formatearComentario(texto) {
+            if (!texto) return "";
+            let lineas = texto.split('\n');
+            let html = "";
+            let inList = false;
+
+            lineas.forEach(linea => {
+                linea = linea.strip ? linea.strip() : linea.trim();
+                if (!linea) return;
+
+                // Format bold text
+                linea = linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+                // Format bullet points
+                const isBullet = linea.startsWith('●') || linea.startsWith('•') || linea.startsWith('* ') || linea.startsWith('- ');
+                if (isBullet) {
+                    let content = linea.replace(/^[●•\*\-]\s*/, '');
+                    if (!inList) {
+                        html += '<ul>';
+                        inList = true;
+                    }
+                    html += `<li>${content}</li>`;
+                } else {
+                    if (inList) {
+                        html += '</ul>';
+                        inList = false;
+                    }
+                    html += `<p>${linea}</p>`;
+                }
+            });
+
+            if (inList) {
+                html += '</ul>';
+            }
+
+            return html;
+        }
+
+        async function realizarBusqueda() {
+            const texto = document.getElementById('busqueda').value.trim();
+            if (!texto) return;
+
+            const contenedor = document.getElementById('resultados');
+            contenedor.innerHTML = `
+            <div class="loader">
+                <div class="spinner"></div>
+                <p>Buscando en las Escrituras...</p>
+            </div>
+        `;
+
+            try {
+                const response = await fetch(`/buscar?texto=${encodeURIComponent(texto)}`);
+                const data = await response.json();
+                contenedor.innerHTML = "";
+
+                if (data.error) {
+                    contenedor.innerHTML = `<div class="card" style="border-left-color: #e74c3c;">
+                    <h3>❌ Error de Servidor</h3>
+                    <p>${data.error}</p>
+                </div>`;
+                    return;
+                }
+
+                if (data.explicacion_ia) {
+                    contenedor.innerHTML = `
+                    <div class="explicacion-ia">
+                        <h3><span class="ai-sparkle">✨</span> Explicación de Inteligencia Artificial:</h3>
+                        <div class="explanation">
+                            ${formatearComentario(data.explicacion_ia)}
+                        </div>
+                    </div>
+                `;
+                } else if (data.resultados && data.resultados.length > 0) {
+                    data.resultados.forEach(item => {
+                        contenedor.innerHTML += `
+                        <div class="card">
+                            <h3>
+                                <span>${item.libro}</span>
+                                <span class="verse-badge">${item.capitulo}:${item.versiculo}</span>
+                            </h3>
+                            <div class="bible-text">
+                                "${item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '')}"
+                            </div>
+                            <div class="explanation">
+                                ${formatearComentario(item.explicacion)}
+                            </div>
+                        </div>
+                    `;
+                    });
+                } else {
+                    contenedor.innerHTML = `
+                    <div class="card" style="border-left-color: #95a5a6; text-align: center; padding: 40px;">
+                        <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🔍</span>
+                        <p style="color: var(--text-muted); font-size: 1.1rem;">No se encontraron resultados para tu búsqueda.</p>
+                    </div>
+                `;
+                }
+            } catch (error) {
+                contenedor.innerHTML = `
+                <div class="card" style="border-left-color: #e74c3c;">
+                    <h3>🔌 Error de Conexión</h3>
+                    <p>No se pudo establecer comunicación con el servidor. Por favor, asegúrate de que el backend esté ejecutándose.</p>
+                </div>
+            `;
+            }
+        }
+
+        async function cargarAleatorio() {
+            const contenedor = document.getElementById('resultados');
+            contenedor.innerHTML = `
+            <div class="loader">
+                <div class="spinner"></div>
+                <p>Extrayendo versículo aleatorio...</p>
+            </div>
+        `;
+
+            try {
+                const response = await fetch('/aleatorio');
+                const data = await response.json();
+                contenedor.innerHTML = "";
+
+                if (data.error) {
+                    contenedor.innerHTML = `<div class="card" style="border-left-color: #e74c3c;">
+                    <h3>❌ Error de Servidor</h3>
+                    <p>${data.error}</p>
+                </div>`;
+                    return;
+                }
+
+                if (data.resultado) {
+                    const item = data.resultado;
+                    // Put the citation name into the search bar
+                    document.getElementById('busqueda').value = `${item.libro} ${item.capitulo}:${item.versiculo}`;
+
+                    contenedor.innerHTML = `
+                    <div class="card">
+                        <h3>
+                            <span>${item.libro}</span>
+                            <span class="verse-badge">${item.capitulo}:${item.versiculo}</span>
+                        </h3>
+                        <div class="bible-text">
+                            "${item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '')}"
+                        </div>
+                        <div class="explanation">
+                            ${formatearComentario(item.explicacion)}
+                        </div>
+                    </div>
+                `;
+                } else {
+                    contenedor.innerHTML = `<p style="text-align: center; padding: 20px;">No se encontraron versículos explicados en la base de datos.</p>`;
+                }
+            } catch (error) {
+                contenedor.innerHTML = `
+                <div class="card" style="border-left-color: #e74c3c;">
+                    <h3>🔌 Error de Conexión</h3>
+                    <p>No se pudo conectar con el servidor. Verifica que esté activo en el puerto 8051.</p>
+                </div>
+            `;
+            }
+        }
+
+        // Auto-load a random verse on start to make the app interactive
+        window.addEventListener('DOMContentLoaded', () => {
+            cargarAleatorio();
+        });
+
+        // Register Service Worker for PWA download capability
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(reg => console.log('PWA Service Worker registrado con éxito!'))
+                    .catch(err => console.log('Error al registrar el PWA Service Worker:', err));
+            });
+        }
+    </script>
+
+</body>
+
+</html>
