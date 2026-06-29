@@ -13,37 +13,71 @@
     <link rel="apple-touch-icon" href="/static/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* CSS variables for colors */
+        /* CSS Variables - Premium Dark Mode (Default) */
         :root {
-            --bg-color: #0d0f12;
-            --container-bg: rgba(20, 24, 33, 0.7);
-            --card-bg: rgba(28, 33, 45, 0.6);
-            --border-color: rgba(212, 175, 55, 0.2);
+            --bg-color: #08090d;
+            --container-bg: rgba(16, 20, 30, 0.75);
+            --card-bg: rgba(24, 29, 43, 0.65);
+            --border-color: rgba(212, 175, 55, 0.18);
             --accent-color: #d4af37;
             --accent-hover: #f3c63f;
             --accent-gradient: linear-gradient(135deg, #ffc107 0%, #ff8c00 100%);
-            --ai-gradient: linear-gradient(135deg, #9b51e0 0%, #3498db 100%);
-            --text-color: #f0f2f5;
-            --text-muted: #9ba1a6;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --glass-blur: blur(12px);
+            --ai-gradient: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+            --text-color: #f0f3f6;
+            --text-muted: #8c94a0;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --glass-blur: blur(14px);
+            --card-border-left: #d4af37;
+            
+            --ai-bg: rgba(29, 17, 51, 0.55);
+            --ai-border: rgba(168, 85, 247, 0.3);
+            --ai-accent: #c084fc;
+            
+            --font-main: 'Outfit', sans-serif;
+            --font-bible: 'Playfair Display', Georgia, serif;
+            --font-size-base: 16px;
         }
 
-        body.light-mode {
-            --bg-color: #f6f8fa;
-            --container-bg: rgba(255, 255, 255, 0.8);
-            --card-bg: rgba(255, 255, 255, 0.95);
+        /* Sepia Theme */
+        body.theme-sepia {
+            --bg-color: #f4ecd8;
+            --container-bg: rgba(24bf, 242, 225, 0.85); /* fallback below */
+            --container-bg: rgba(243, 233, 210, 0.85);
+            --card-bg: rgba(253, 24cf, 227, 0.95);
+            --card-bg: rgba(252, 246, 228, 0.95);
+            --border-color: rgba(139, 90, 43, 0.2);
+            --accent-color: #8b5a2b;
+            --accent-hover: #70471e;
+            --accent-gradient: linear-gradient(135deg, #8b5a2b 0%, #5c3a1a 100%);
+            --ai-gradient: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            --text-color: #3e3225;
+            --text-muted: #7c6d5d;
+            --shadow-color: rgba(139, 90, 43, 0.12);
+            --card-border-left: #8b5a2b;
+            --ai-bg: rgba(139, 90, 43, 0.08);
+            --ai-border: rgba(139, 90, 43, 0.25);
+            --ai-accent: #8b5a2b;
+        }
+
+        /* Light Theme */
+        body.theme-light {
+            --bg-color: #f3f5f8;
+            --container-bg: rgba(255, 255, 255, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.98);
             --border-color: rgba(0, 0, 0, 0.1);
             --accent-color: #b8860b;
             --accent-hover: #996515;
             --accent-gradient: linear-gradient(135deg, #b8860b 0%, #8b6914 100%);
-            --text-color: #1e2229;
-            --text-muted: #626875;
-            --shadow-color: rgba(0, 0, 0, 0.1);
+            --ai-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            --text-color: #1a1e26;
+            --text-muted: #626a7a;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --card-border-left: #b8860b;
+            --ai-bg: rgba(139, 92, 246, 0.05);
+            --ai-border: rgba(139, 92, 246, 0.2);
+            --ai-accent: #7c3aed;
         }
 
         * {
@@ -53,26 +87,35 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: var(--font-main);
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 16px;
+            font-size: var(--font-size-base);
             transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
 
-        body.light-mode {
-            background-image: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
+        body.theme-sepia {
+            background-image: radial-gradient(circle at 50% 0%, rgba(139, 90, 43, 0.08) 0%, transparent 60%);
+        }
+
+        body.theme-light {
+            background-image: radial-gradient(circle at 50% 0%, rgba(184, 134, 11, 0.04) 0%, transparent 60%);
         }
 
         .container {
             width: 100%;
-            max-width: 750px;
-            margin-top: 40px;
+            max-width: 800px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         /* Header styling */
@@ -81,57 +124,140 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-bottom: 40px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 10px;
         }
 
         .logo-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
         .logo-img {
-            height: 80px;
-            width: 80px;
-            border-radius: 18px;
+            height: 64px;
+            width: 64px;
+            border-radius: 16px;
             object-fit: contain;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 6px 16px var(--shadow-color);
             border: 1.5px solid var(--border-color);
             transition: transform 0.3s ease;
         }
 
         .logo-img:hover {
-            transform: rotate(5deg) scale(1.05);
+            transform: rotate(5deg) scale(1.08);
         }
 
         h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-family: var(--font-bible);
+            font-size: 2rem;
+            font-weight: 700;
             letter-spacing: -0.5px;
-            background: linear-gradient(to right, var(--text-color), var(--text-muted));
+            background: linear-gradient(to right, var(--text-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .theme-btn {
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 10px 16px;
-            border-radius: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px var(--shadow-color);
         }
 
-        .theme-btn:hover {
+        .icon-btn:hover {
             transform: translateY(-2px);
             border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .icon-btn.active {
+            background: var(--accent-gradient);
+            color: #000;
+            border-color: transparent;
+        }
+
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--container-bg);
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active {
+            background: var(--card-bg);
+            border-bottom: 3px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* App Sections */
+        .app-section {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .app-section.active {
+            display: block;
+        }
+
+        /* Hero view */
+        .hero-view {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--container-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hero-view h2 {
+            font-family: var(--font-bible);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+        }
+
+        .hero-view p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         /* Search Section */
@@ -141,16 +267,19 @@
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 24px;
-            box-shadow: 0 20px 40px var(--shadow-color);
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
+            padding: 20px;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
         }
 
         .search-box {
             display: flex;
             gap: 12px;
             width: 100%;
+            position: relative;
         }
 
         .input-container {
@@ -170,9 +299,9 @@
         input {
             width: 100%;
             padding: 16px 16px 16px 48px;
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid var(--border-color);
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
             color: var(--text-color);
             font-size: 1.05rem;
             font-family: inherit;
@@ -180,18 +309,55 @@
             transition: all 0.25s ease;
         }
 
-        .light-mode input {
-            background: rgba(255, 255, 255, 0.7);
+        .theme-light input {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .theme-sepia input {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
 
-        button {
-            padding: 16px 28px;
-            border-radius: 16px;
+        /* Autocomplete Suggestions */
+        .autocomplete-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            margin-top: 5px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: left;
+        }
+        
+        .theme-light .suggestion-item {
+            border-bottom-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .suggestion-item:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-color);
+        }
+
+        button.btn {
+            padding: 14px 24px;
+            border-radius: 14px;
             border: none;
             font-weight: 700;
             font-family: inherit;
@@ -200,18 +366,19 @@
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
         .btn-primary {
             background: var(--accent-gradient);
-            color: #000;
-            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.3);
+            color: #08090d;
+            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.35);
             filter: brightness(1.05);
         }
 
@@ -228,33 +395,114 @@
         .btn-secondary:hover {
             transform: translateY(-2px);
             border-color: var(--accent-color);
+            color: var(--accent-color);
         }
 
-        .button-group {
+        /* Bible Browser (Navegador) */
+        .bible-browser {
             display: flex;
-            justify-content: space-between;
-            margin-top: 16px;
-            gap: 12px;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .select-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .theme-light select {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .theme-sepia select {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 0.8rem;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* History tags */
+        .history-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .history-title {
+            color: var(--text-muted);
+            margin-right: 5px;
+        }
+
+        .history-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+        
+        .theme-light .history-tag {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .history-tag:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .history-clear {
+            color: var(--accent-color);
+            cursor: pointer;
+            text-decoration: underline;
+            margin-left: 5px;
         }
 
         /* Results section */
         #resultados {
-            margin-top: 20px;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
+        /* Cards */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-left: 6px solid var(--accent-color);
-            border-radius: 18px;
+            border-left: 6px solid var(--card-border-left);
+            border-radius: 20px;
             padding: 24px;
             box-shadow: 0 10px 25px var(--shadow-color);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            animation: fadeIn 0.4s ease-out;
+            animation: slideIn 0.4s ease-out;
+            position: relative;
         }
 
         .card:hover {
@@ -263,14 +511,24 @@
             border-color: rgba(212, 175, 55, 0.4);
         }
 
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-            color: var(--accent-color);
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-family: var(--font-bible);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .verse-badge {
@@ -278,31 +536,64 @@
             color: var(--accent-color);
             padding: 4px 10px;
             border-radius: 8px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             border: 1px solid var(--border-color);
         }
 
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            color: var(--accent-color);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .action-btn.fav-active {
+            color: #ffc107;
+            animation: pulse 0.3s ease-in-out;
+        }
+
         .bible-text {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.15rem;
+            font-family: var(--font-bible);
+            font-size: calc(var(--font-size-base) * 1.12);
             line-height: 1.6;
             margin-bottom: 20px;
-            padding: 16px;
+            padding: 16px 20px;
             border-radius: 12px;
-            background: rgba(0, 0, 0, 0.15);
-            border-left: 3px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.18);
+            border-left: 3px solid rgba(255, 255, 255, 0.08);
             font-style: italic;
         }
 
-        .light-mode .bible-text {
+        .theme-light .bible-text {
             background: rgba(0, 0, 0, 0.03);
-            border-left-color: rgba(0, 0, 0, 0.1);
+            border-left-color: rgba(0, 0, 0, 0.08);
+        }
+        .theme-sepia .bible-text {
+            background: rgba(0, 0, 0, 0.03);
+            border-left-color: rgba(139, 90, 43, 0.15);
         }
 
         .explanation {
             line-height: 1.7;
-            font-size: 1.05rem;
+            font-size: var(--font-size-base);
             color: var(--text-color);
         }
 
@@ -325,35 +616,34 @@
             font-weight: 600;
         }
 
-        /* AI Card */
+        /* AI Card & Tabs */
         .explicacion-ia {
-            background: rgba(30, 20, 50, 0.4);
-            border: 1px solid rgba(155, 81, 224, 0.3);
-            border-left: 6px solid #9b51e0;
-            border-radius: 18px;
+            background: var(--ai-bg);
+            border: 1px solid var(--ai-border);
+            border-left: 6px solid var(--ai-accent);
+            border-radius: 20px;
             padding: 24px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.5s ease-out;
             transition: all 0.3s ease;
         }
 
-        .light-mode .explicacion-ia {
-            background: rgba(155, 81, 224, 0.05);
-        }
-
         .explicacion-ia:hover {
             transform: translateY(-4px);
-            border-color: rgba(155, 81, 224, 0.6);
-            box-shadow: 0 16px 35px rgba(155, 81, 224, 0.15);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 16px 35px rgba(168, 85, 247, 0.15);
         }
 
-        .explicacion-ia h3 {
-            font-size: 1.3rem;
-            color: #af70ec;
-            margin-bottom: 14px;
+        .ai-title {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .ai-title h3 {
+            font-size: 1.4rem;
+            color: var(--ai-accent);
         }
 
         .ai-sparkle {
@@ -361,6 +651,255 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* AI Interactive Tabs */
+        .ai-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--ai-border);
+            margin-bottom: 16px;
+            gap: 4px;
+        }
+
+        .ai-tab {
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .ai-tab:hover {
+            color: var(--ai-accent);
+        }
+
+        .ai-tab.active {
+            color: var(--ai-accent);
+            border-bottom-color: var(--ai-accent);
+        }
+
+        .ai-tab-content {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .ai-tab-content.active {
+            display: block;
+        }
+
+        /* Settings Side Panel */
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100%;
+            background: var(--container-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-left: 1px solid var(--border-color);
+            box-shadow: -10px 0 30px var(--shadow-color);
+            z-index: 1000;
+            padding: 24px;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .settings-panel.open {
+            right: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .settings-header h3 {
+            font-family: var(--font-bible);
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .settings-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .theme-options {
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-opt-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .theme-opt-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: transparent;
+        }
+
+        .font-options {
+            display: flex;
+            gap: 8px;
+        }
+
+        .font-opt-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .font-opt-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Font size slider */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .settings-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .settings-overlay.open {
+            display: block;
+        }
+
+        /* Audio Player Bar (Global) */
+        .audio-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            width: 90%;
+            max-width: 500px;
+            background: var(--container-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .audio-bar.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .audio-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .audio-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .audio-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Waves Animation */
+        .sound-wave {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+            width: 25px;
+        }
+
+        .sound-wave span {
+            display: block;
+            width: 3px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 3px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .sound-wave span:nth-child(2) { animation-delay: 0.15s; }
+        .sound-wave span:nth-child(3) { animation-delay: 0.3s; }
+        .sound-wave span:nth-child(4) { animation-delay: 0.45s; }
+
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
         }
 
         /* Loading spinner */
@@ -369,7 +908,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 50px;
             gap: 16px;
             color: var(--text-muted);
             animation: fadeIn 0.2s ease;
@@ -378,39 +917,60 @@
         .spinner {
             width: 48px;
             height: 48px;
-            border: 4px solid var(--card-bg);
+            border: 4px solid rgba(255, 255, 255, 0.05);
             border-top: 4px solid var(--accent-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background: var(--card-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
         /* Animations */
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(10deg);
+                transform: translateY(15px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
         /* Footer */
         footer {
             margin-top: auto;
-            padding: 40px 20px 20px 20px;
+            padding: 30px 20px 20px 20px;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -427,96 +987,653 @@
 
         /* Responsive styling */
         @media (max-width: 600px) {
-            .search-box {
-                flex-direction: column;
-            }
-
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
+            h1 { font-size: 1.6rem; }
+            .logo-img { height: 48px; width: 48px; }
+            .search-box { flex-direction: column; }
+            button.btn { width: 100%; }
+            .bible-browser { flex-direction: column; }
+            .card { padding: 18px; }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <header>
-            <div class="logo-title">
-                <img src="/static/icon-192.png" alt="Logo" class="logo-img">
-                <h1>Biblia Explicada</h1>
-            </div>
-            <button class="theme-btn" onclick="toggleModo()">
-                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
-            </button>
-        </header>
-
-        <div class="search-wrapper">
-            <div class="search-box">
-                <div class="input-container">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="busqueda" placeholder="Ej: Génesis 1:1, Éxodo 20, amor"
-                        onkeypress="handleEnter(event)">
-                </div>
-                <button class="btn-primary" onclick="realizarBusqueda()">Buscar</button>
-            </div>
-            <div class="button-group">
-                <button class="btn-secondary" onclick="cargarAleatorio()">
-                    <span>🎲</span> Descubrir Versículo
-                </button>
-                <button class="btn-secondary" onclick="limpiarBusqueda()">
-                    Limpiar
-                </button>
+    <!-- Overlay & Settings Sidebar -->
+    <div class="settings-overlay" id="settingsOverlay" onclick="toggleSettings()"></div>
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h3>Ajustes de Lectura</h3>
+            <button class="icon-btn" onclick="toggleSettings()">✕</button>
+        </div>
+        
+        <div class="settings-group">
+            <label>Tema Visual</label>
+            <div class="theme-options">
+                <button class="theme-opt-btn active" id="theme-dark-btn" onclick="setTheme('dark')">Oscuro</button>
+                <button class="theme-opt-btn" id="theme-sepia-btn" onclick="setTheme('sepia')">Sepia</button>
+                <button class="theme-opt-btn" id="theme-light-btn" onclick="setTheme('light')">Claro</button>
             </div>
         </div>
 
-        <div id="resultados"></div>
+        <div class="settings-group">
+            <label>Tipografía</label>
+            <div class="font-options">
+                <button class="font-opt-btn active" id="font-serif-btn" onclick="setFontFamily('serif')">Elegante (Serif)</button>
+                <button class="font-opt-btn" id="font-sans-btn" onclick="setFontFamily('sans')">Moderna (Sans)</button>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <label>Tamaño de Letra</label>
+            <div class="slider-container">
+                <span style="font-size: 0.8rem;">A-</span>
+                <input type="range" id="fontSizeSlider" min="14" max="26" value="16" oninput="changeFontSize(this.value)">
+                <span style="font-size: 1.2rem;">A+</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Audio Player Bar -->
+    <div class="audio-bar" id="globalAudioBar">
+        <div class="sound-wave">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="audio-info">
+            <span class="audio-title" id="audioTitle">Cargando Audio...</span>
+            <span class="audio-subtitle" id="audioSubtitle">Escuchando la explicación</span>
+        </div>
+        <div class="audio-controls">
+            <button class="icon-btn" id="audioPlayPauseBtn" onclick="toggleAudioPause()">⏸️</button>
+            <button class="icon-btn" onclick="stopAudio()">⏹️</button>
+        </div>
+    </div>
+
+    <!-- App Content -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-title" onclick="showSection('explorer')" style="cursor: pointer;">
+                <img src="/static/icon-192.png" alt="Logo" class="logo-img">
+                <h1>Biblia Explicada</h1>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="nav-fav-btn" onclick="showSection('favorites')" title="Mis Favoritos">⭐</button>
+                <button class="icon-btn" onclick="toggleSettings()" title="Ajustes de lectura">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" id="tab-explorer" onclick="showSection('explorer')">
+                <span>📖</span> Explorador y Búsqueda
+            </button>
+            <button class="tab-btn" id="tab-favorites" onclick="showSection('favorites')">
+                <span>⭐</span> Mis Favoritos
+            </button>
+        </div>
+
+        <!-- SECTION: EXPLORER AND SEARCH -->
+        <div id="section-explorer" class="app-section active">
+            <!-- Search & Filter Card -->
+            <div class="search-wrapper">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <div class="input-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="busqueda" placeholder="Buscar versículo, capítulo o tema (ej: Juan 3:16, amor)"
+                            onkeypress="handleEnter(event)" oninput="onSearchInput(this.value)" autocomplete="off">
+                        <!-- Autocomplete dropdown -->
+                        <div class="autocomplete-suggestions" id="suggestionsBox"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="realizarBusqueda()">Buscar</button>
+                </div>
+
+                <!-- Recent History -->
+                <div class="history-container" id="historyContainer" style="display: none;">
+                    <span class="history-title">Recientes:</span>
+                    <span id="historyTags" style="display: flex; gap: 6px; flex-wrap: wrap;"></span>
+                    <span class="history-clear" onclick="clearHistory()">Limpiar</span>
+                </div>
+
+                <!-- Divider -->
+                <div style="border-top: 1px solid var(--border-color); margin: 4px 0;"></div>
+
+                <!-- Bible Selector Browser -->
+                <div class="bible-browser">
+                    <div class="select-wrapper">
+                        <select id="selectorLibro" onchange="onBookSelect()">
+                            <option value="">Selecciona un Libro...</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="selectorCapitulo" onchange="onChapterSelect()" disabled>
+                            <option value="">Capítulo...</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" onclick="cargarAleatorio()" title="Descubrir un versículo al azar">
+                        <span>🎲</span> Descubrir
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero/Intro Card -->
+            <div class="hero-view" id="heroView">
+                <h2>Explora la Palabra Profunda</h2>
+                <p>Busca un pasaje bíblico o un tema para obtener una explicación detallada de los versículos. También puedes navegar libro por libro o dejarte guiar con el botón <strong>Descubrir</strong>.</p>
+            </div>
+
+            <!-- Results container -->
+            <div id="resultados"></div>
+        </div>
+
+        <!-- SECTION: FAVORITES -->
+        <div id="section-favorites" class="app-section">
+            <div id="favoritosList" class="results-container">
+                <!-- Favorites will be loaded dynamically -->
+            </div>
+        </div>
+
     </div>
 
     <footer>
-        <p>Reyna Valera 1960</p>
+        <p>Biblia Reina Valera 1960. IA potenciada con Google Gemini.</p>
     </footer>
 
     <script>
-        // System Theme Auto Detection
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-            document.body.classList.add('light-mode');
-            actualizarBotonTema();
+        // --- CONSTANTES Y ESTADOS ---
+        const LIBROS_BIBLIA = [
+            "Génesis", "Éxodo", "Levítico", "Números", "Deuteronomio", "Josué", "Jueces", "Rut", 
+            "1 Samuel", "2 Samuel", "1 Reyes", "2 Reyes", "1 Crónicas", "2 Crónicas", "Esdras", 
+            "Nehemías", "Ester", "Job", "Salmos", "Proverbios", "Eclesiastés", "Cantares", 
+            "Isaías", "Jeremías", "Lamentaciones", "Ezequiel", "Daniel", "Oseas", "Joel", "Amós", 
+            "Abdías", "Jonás", "Miqueas", "Nahúm", "Habacuc", "Sofonías", "Hageo", "Zacarías", 
+            "Malaquías", "Mateo", "Marcos", "Lucas", "Juan", "Hechos", "Romanos", "1 Corintios", 
+            "2 Corintios", "Gálatas", "Efesios", "Filipenses", "Colosenses", "1 Tesalonicenses", 
+            "2 Tesalonicenses", "1 Timoteo", "2 Timoteo", "Tito", "Filemón", "Hebreos", 
+            "Santiago", "1 Pedro", "2 Pedro", "1 Juan", "2 Juan", "3 Juan", "Judas", "Apocalipsis"
+        ];
+
+        let librosDisponibles = []; // Cargados desde el API
+        let favoritos = JSON.parse(localStorage.getItem('biblia_favoritos')) || [];
+        let historial = JSON.parse(localStorage.getItem('biblia_historial')) || [];
+        let currentSpeech = null;
+        let isAudioPlaying = false;
+        let isAudioPaused = false;
+        let activeAudioCardId = null;
+
+        // --- INICIALIZACIÓN ---
+        window.addEventListener('DOMContentLoaded', () => {
+            cargarLibrosAPI();
+            actualizarHistorialUI();
+            cargarAjustes();
+            
+            // Cerrar sugerencias al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.input-container')) {
+                    document.getElementById('suggestionsBox').style.display = 'none';
+                }
+            });
+        });
+
+        // --- AJUSTES Y PERSONALIZACIÓN ---
+        function toggleSettings() {
+            document.getElementById('settingsPanel').classList.toggle('open');
+            document.getElementById('settingsOverlay').classList.toggle('open');
         }
 
-        function toggleModo() {
-            document.body.classList.toggle('light-mode');
-            actualizarBotonTema();
-        }
+        function setTheme(theme) {
+            document.body.classList.remove('theme-dark', 'theme-sepia', 'theme-light');
+            document.getElementById('theme-dark-btn').classList.remove('active');
+            document.getElementById('theme-sepia-btn').classList.remove('active');
+            document.getElementById('theme-light-btn').classList.remove('active');
 
-        function actualizarBotonTema() {
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-            if (document.body.classList.contains('light-mode')) {
-                icon.innerText = "☀️";
-                text.innerText = "Modo Claro";
+            if (theme === 'sepia') {
+                document.body.classList.add('theme-sepia');
+                document.getElementById('theme-sepia-btn').classList.add('active');
+            } else if (theme === 'light') {
+                document.body.classList.add('theme-light');
+                document.getElementById('theme-light-btn').classList.add('active');
             } else {
-                icon.innerText = "🌙";
-                text.innerText = "Modo Oscuro";
+                // Default dark
+                document.getElementById('theme-dark-btn').classList.add('active');
+            }
+            localStorage.setItem('biblia_tema', theme);
+        }
+
+        function setFontFamily(font) {
+            document.getElementById('font-serif-btn').classList.remove('active');
+            document.getElementById('font-sans-btn').classList.remove('active');
+
+            if (font === 'sans') {
+                document.documentElement.style.setProperty('--font-bible', "'Outfit', sans-serif");
+                document.getElementById('font-sans-btn').classList.add('active');
+            } else {
+                document.documentElement.style.setProperty('--font-bible', "'Playfair Display', Georgia, serif");
+                document.getElementById('font-serif-btn').classList.add('active');
+            }
+            localStorage.setItem('biblia_fuente_familia', font);
+        }
+
+        function changeFontSize(size) {
+            document.documentElement.style.setProperty('--font-size-base', size + 'px');
+            document.getElementById('fontSizeSlider').value = size;
+            localStorage.setItem('biblia_fuente_tamano', size);
+        }
+
+        function cargarAjustes() {
+            const tema = localStorage.getItem('biblia_tema') || 'dark';
+            const fuente = localStorage.getItem('biblia_fuente_familia') || 'serif';
+            const tamano = localStorage.getItem('biblia_fuente_tamano') || '16';
+
+            setTheme(tema);
+            setFontFamily(fuente);
+            changeFontSize(tamano);
+        }
+
+        // --- MULTIPESTAÑAS APP ---
+        function showSection(section) {
+            document.querySelectorAll('.app-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(`section-${section}`).classList.add('active');
+            
+            if (section === 'favorites') {
+                document.getElementById('tab-favorites').classList.add('active');
+                document.getElementById('nav-fav-btn').classList.add('active');
+                cargarFavoritosUI();
+            } else {
+                document.getElementById('tab-explorer').classList.add('active');
+                document.getElementById('nav-fav-btn').classList.remove('active');
+            }
+        }
+
+        // --- CARGAR DATOS DESDE EL BACKEND ---
+        async function cargarLibrosAPI() {
+            try {
+                const response = await fetch('/libros');
+                const data = await response.json();
+                if (data.libros && data.libros.length > 0) {
+                    librosDisponibles = data.libros;
+                    poblarSelectorLibros();
+                }
+            } catch (error) {
+                console.error('Error al cargar libros de la API, usando estáticos.', error);
+                librosDisponibles = LIBROS_BIBLIA.map(l => ({ libro: l, capitulos: 50 }));
+                poblarSelectorLibros();
+            }
+        }
+
+        function poblarSelectorLibros() {
+            const selector = document.getElementById('selectorLibro');
+            selector.innerHTML = '<option value="">Selecciona un Libro...</option>';
+            librosDisponibles.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.libro;
+                option.textContent = item.libro;
+                selector.appendChild(option);
+            });
+        }
+
+        function onBookSelect() {
+            const libroSeleccionado = document.getElementById('selectorLibro').value;
+            const selectorCap = document.getElementById('selectorCapitulo');
+            
+            if (!libroSeleccionado) {
+                selectorCap.innerHTML = '<option value="">Capítulo...</option>';
+                selectorCap.disabled = true;
+                return;
+            }
+
+            const libroData = librosDisponibles.find(l => l.libro === libroSeleccionado);
+            const totalCapitulos = libroData ? libroData.capitulos : 1;
+
+            selectorCap.innerHTML = '<option value="">Capítulo...</option>';
+            for (let i = 1; i <= totalCapitulos; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                selectorCap.appendChild(option);
+            }
+            selectorCap.disabled = false;
+        }
+
+        function onChapterSelect() {
+            const libro = document.getElementById('selectorLibro').value;
+            const cap = document.getElementById('selectorCapitulo').value;
+            if (libro && cap) {
+                cargarCapitulo(libro, cap);
+            }
+        }
+
+        async function cargarCapitulo(libro, capitulo) {
+            const contenedor = document.getElementById('resultados');
+            document.getElementById('heroView').style.display = 'none';
+            contenedor.innerHTML = `
+                <div class="loader">
+                    <div class="spinner"></div>
+                    <p>Cargando ${libro} Capítulo ${capitulo}...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`/capitulo?libro=${encodeURIComponent(libro)}&capitulo=${capitulo}`);
+                const data = await response.json();
+                contenedor.innerHTML = "";
+
+                if (data.error) {
+                    mostrarError(data.error);
+                    return;
+                }
+
+                if (data.resultados && data.resultados.length > 0) {
+                    renderizarResultados(data.resultados);
+                } else {
+                    contenedor.innerHTML = `
+                        <div class="empty-state">
+                            <span>📖</span>
+                            <p>No se encontraron versículos explicados para este capítulo en la base de datos.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                mostrarError("No se pudo establecer comunicación con el servidor.");
+            }
+        }
+
+        // --- AUTOCOMPLETADO ---
+        function onSearchInput(val) {
+            const box = document.getElementById('suggestionsBox');
+            if (!val.trim()) {
+                box.style.display = 'none';
+                return;
+            }
+
+            // Buscar coincidencia en libros de la Biblia
+            const cleanVal = val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const matches = LIBROS_BIBLIA.filter(libro => {
+                const cleanLibro = libro.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                return cleanLibro.startsWith(cleanVal) || cleanLibro.includes(" " + cleanVal);
+            });
+
+            if (matches.length > 0) {
+                box.innerHTML = "";
+                matches.slice(0, 5).forEach(match => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.textContent = match;
+                    div.onclick = () => {
+                        document.getElementById('busqueda').value = match + " ";
+                        box.style.display = 'none';
+                        document.getElementById('busqueda').focus();
+                    };
+                    box.appendChild(div);
+                });
+                box.style.display = 'block';
+            } else {
+                box.style.display = 'none';
             }
         }
 
         function handleEnter(e) {
-            if (e.key === 'Enter') realizarBusqueda();
+            if (e.key === 'Enter') {
+                document.getElementById('suggestionsBox').style.display = 'none';
+                realizarBusqueda();
+            }
         }
 
-        function limpiarBusqueda() {
-            document.getElementById('busqueda').value = "";
-            document.getElementById('resultados').innerHTML = "";
+        // --- BÚSQUEDA ---
+        async function realizarBusqueda(queryText = null) {
+            const texto = queryText || document.getElementById('busqueda').value.trim();
+            if (!texto) return;
+            
+            if (!queryText) {
+                document.getElementById('busqueda').value = texto;
+            }
+
+            document.getElementById('suggestionsBox').style.display = 'none';
+            document.getElementById('heroView').style.display = 'none';
+            
+            // Guardar en historial
+            agregarAHistorial(texto);
+
+            const contenedor = document.getElementById('resultados');
+            contenedor.innerHTML = `
+                <div class="loader">
+                    <div class="spinner"></div>
+                    <p>Buscando en las Escrituras...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(`/buscar?texto=${encodeURIComponent(texto)}`);
+                const data = await response.json();
+                contenedor.innerHTML = "";
+
+                if (data.error) {
+                    mostrarError(data.error);
+                    return;
+                }
+
+                if (data.explicacion_ia) {
+                    renderizarIA(texto, data.explicacion_ia);
+                } else if (data.resultados && data.resultados.length > 0) {
+                    renderizarResultados(data.resultados);
+                } else {
+                    contenedor.innerHTML = `
+                        <div class="empty-state">
+                            <span>🔍</span>
+                            <p>No se encontraron resultados para tu búsqueda.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                mostrarError("No se pudo conectar con el servidor. Verifica tu conexión.");
+            }
         }
 
-        // A simple format function that cleans and structures explanations
-        // Replaces bold markdown '**text**' with HTML bold, and bullets '●' with lists
+        async function cargarAleatorio() {
+            const contenedor = document.getElementById('resultados');
+            document.getElementById('heroView').style.display = 'none';
+            contenedor.innerHTML = `
+                <div class="loader">
+                    <div class="spinner"></div>
+                    <p>Extrayendo versículo aleatorio...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/aleatorio');
+                const data = await response.json();
+                contenedor.innerHTML = "";
+
+                if (data.error) {
+                    mostrarError(data.error);
+                    return;
+                }
+
+                if (data.resultado) {
+                    const item = data.resultado;
+                    document.getElementById('busqueda').value = `${item.libro} ${item.capitulo}:${item.versiculo}`;
+                    renderizarResultados([item]);
+                } else {
+                    contenedor.innerHTML = `<div class="empty-state"><span>🎲</span><p>No se encontraron registros en la base de datos.</p></div>`;
+                }
+            } catch (error) {
+                mostrarError("Error al conectar con el servidor.");
+            }
+        }
+
+        // --- RENDERIZADO DE RESULTADOS ---
+        function renderizarResultados(items) {
+            const contenedor = document.getElementById('resultados');
+            contenedor.innerHTML = "";
+
+            items.forEach(item => {
+                const isFav = favoritos.some(f => f.id === item.id);
+                const cleanBibleText = item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '');
+                const cardId = `card-${item.id}`;
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.id = cardId;
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3>${item.libro}</h3>
+                        <div class="card-meta">
+                            <span class="verse-badge">${item.capitulo}:${item.versiculo}</span>
+                            <div class="card-actions">
+                                <button class="action-btn ${isFav ? 'fav-active' : ''}" onclick="toggleFavorito(${JSON.stringify(item).replace(/"/g, '&quot;')}, this)" title="Guardar en Favoritos">⭐</button>
+                                <button class="action-btn" onclick="shareVerse('${item.libro}', '${item.capitulo}:${item.versiculo}', \`${cleanBibleText}\`, \`${item.explicacion.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" title="Compartir">🔗</button>
+                                <button class="action-btn" onclick="playAudio('${item.libro} ${item.capitulo}:${item.versiculo}', \`${cleanBibleText}\`, \`${item.explicacion.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, '${cardId}')" title="Escuchar">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bible-text">
+                        "${cleanBibleText}"
+                    </div>
+                    <div class="explanation">
+                        ${formatearComentario(item.explicacion)}
+                    </div>
+                `;
+                contenedor.appendChild(card);
+            });
+        }
+
+        // --- RENDERIZADO DE IA (CON PESTAÑAS) ---
+        function renderizarIA(tema, rawText) {
+            const contenedor = document.getElementById('resultados');
+            
+            // Analizar si el texto está estructurado con las etiquetas
+            const parsed = parsearExplicacionIA(rawText);
+            const cardId = `card-ia-${Date.now()}`;
+            
+            const card = document.createElement('div');
+            card.className = 'explicacion-ia';
+            card.id = cardId;
+
+            let htmlContent = `
+                <div class="card-header" style="margin-bottom: 8px;">
+                    <div class="ai-title">
+                        <span class="ai-sparkle">✨</span>
+                        <h3>Explicación de Inteligencia Artificial</h3>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn" onclick="shareVerse('Explicación IA', '${tema}', '', \`${rawText.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" title="Compartir">🔗</button>
+                        <button class="action-btn" id="btn-audio-${cardId}" onclick="playAudioIA('${tema}', \`${rawText.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`, '${cardId}')" title="Escuchar">🔊</button>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-style: italic;">Tema consultado: "${tema}"</p>
+            `;
+
+            if (parsed.esEstructurada) {
+                htmlContent += `
+                    <!-- Pestañas Interactivas -->
+                    <div class="ai-tabs">
+                        <button class="ai-tab active" onclick="switchAITab('${cardId}', 'explicacion')">Comentario</button>
+                        <button class="ai-tab" onclick="switchAITab('${cardId}', 'contexto')">Contexto</button>
+                        <button class="ai-tab" onclick="switchAITab('${cardId}', 'aplicacion')">Aplicación</button>
+                    </div>
+
+                    <div class="ai-tab-content active" data-tab-content="explicacion">
+                        <div class="explanation">${formatearComentario(parsed.explicacion)}</div>
+                    </div>
+                    <div class="ai-tab-content" data-tab-content="contexto">
+                        <div class="explanation">${formatearComentario(parsed.contexto)}</div>
+                    </div>
+                    <div class="ai-tab-content" data-tab-content="aplicacion">
+                        <div class="explanation">${formatearComentario(parsed.aplicacion)}</div>
+                    </div>
+                `;
+            } else {
+                htmlContent += `
+                    <div class="explanation">
+                        ${formatearComentario(rawText)}
+                    </div>
+                `;
+            }
+
+            card.innerHTML = htmlContent;
+            contenedor.appendChild(card);
+        }
+
+        // --- PARSER DE EXPLICACIÓN IA ---
+        function parsearExplicacionIA(texto) {
+            const tags = {
+                explicacion: /\[EXPLICACION\]/i,
+                contexto: /\[CONTEXTO\]/i,
+                aplicacion: /\[APLICACION\]/i
+            };
+
+            const esEstructurada = tags.explicacion.test(texto) || tags.contexto.test(texto) || tags.aplicacion.test(texto);
+
+            if (!esEstructurada) {
+                return { esEstructurada: false };
+            }
+
+            // Extraer las secciones cortando el texto
+            let explicacion = "";
+            let contexto = "";
+            let aplicacion = "";
+
+            const partes = texto.split(/\[EXPLICACION\]|\[CONTEXTO\]|\[APLICACION\]/gi);
+            // El primer elemento suele estar vacío o contener texto de introducción
+            // Mapeamos los bloques en función de la aparición de las etiquetas
+            const indices = [];
+            
+            let match;
+            const regex = /\[EXPLICACION\]|\[CONTEXTO\]|\[APLICACION\]/gi;
+            while ((match = regex.exec(texto)) !== null) {
+                indices.push({ tag: match[0].toUpperCase(), index: match.index });
+            }
+
+            // Asignar los bloques
+            for (let i = 0; i < indices.length; i++) {
+                const tagActual = indices[i].tag;
+                const contenido = partes[i + 1] ? partes[i + 1].trim() : "";
+
+                if (tagActual === "[EXPLICACION]") {
+                    explicacion = contenido;
+                } else if (tagActual === "[CONTEXTO]") {
+                    contexto = contenido;
+                } else if (tagActual === "[APLICACION]") {
+                    aplicacion = contenido;
+                }
+            }
+
+            return {
+                esEstructurada: true,
+                explicacion: explicacion || "No disponible.",
+                contexto: contexto || "No disponible.",
+                aplicacion: aplicacion || "No disponible."
+            };
+        }
+
+        function switchAITab(cardId, tabName) {
+            const card = document.getElementById(cardId);
+            
+            // Cambiar botones activos
+            card.querySelectorAll('.ai-tab').forEach((tab, index) => {
+                tab.classList.remove('active');
+                if (tabName === 'explicacion' && index === 0) tab.classList.add('active');
+                if (tabName === 'contexto' && index === 1) tab.classList.add('active');
+                if (tabName === 'aplicacion' && index === 2) tab.classList.add('active');
+            });
+
+            // Cambiar contenidos activos
+            card.querySelectorAll('.ai-tab-content').forEach(content => {
+                content.classList.remove('active');
+                if (content.getAttribute('data-tab-content') === tabName) {
+                    content.classList.add('active');
+                }
+            });
+        }
+
+        // --- FORMATO DE COMENTARIOS ---
         function formatearComentario(texto) {
             if (!texto) return "";
             let lineas = texto.split('\n');
@@ -524,16 +1641,16 @@
             let inList = false;
 
             lineas.forEach(linea => {
-                linea = linea.strip ? linea.strip() : linea.trim();
+                linea = linea.trim();
                 if (!linea) return;
 
-                // Format bold text
+                // Formatear texto en negrita (**texto**)
                 linea = linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-                // Format bullet points
-                const isBullet = linea.startsWith('●') || linea.startsWith('•') || linea.startsWith('* ') || linea.startsWith('- ');
+                // Formatear listas de viñetas
+                const isBullet = linea.startsWith('●') || linea.startsWith('•') || linea.startsWith('* ') || linea.startsWith('- ') || /^\d+\.\s/.test(linea);
                 if (isBullet) {
-                    let content = linea.replace(/^[●•\*\-]\s*/, '');
+                    let content = linea.replace(/^[●•\*\-]\s*/, '').replace(/^\d+\.\s*/, '');
                     if (!inList) {
                         html += '<ul>';
                         inList = true;
@@ -555,141 +1672,259 @@
             return html;
         }
 
-        async function realizarBusqueda() {
-            const texto = document.getElementById('busqueda').value.trim();
-            if (!texto) return;
-
-            const contenedor = document.getElementById('resultados');
-            contenedor.innerHTML = `
-            <div class="loader">
-                <div class="spinner"></div>
-                <p>Buscando en las Escrituras...</p>
-            </div>
-        `;
-
-            try {
-                const response = await fetch(`/buscar?texto=${encodeURIComponent(texto)}`);
-                const data = await response.json();
-                contenedor.innerHTML = "";
-
-                if (data.error) {
-                    contenedor.innerHTML = `<div class="card" style="border-left-color: #e74c3c;">
-                    <h3>❌ Error de Servidor</h3>
-                    <p>${data.error}</p>
-                </div>`;
-                    return;
-                }
-
-                if (data.explicacion_ia) {
-                    contenedor.innerHTML = `
-                    <div class="explicacion-ia">
-                        <h3><span class="ai-sparkle">✨</span> Explicación de Inteligencia Artificial:</h3>
-                        <div class="explanation">
-                            ${formatearComentario(data.explicacion_ia)}
-                        </div>
-                    </div>
-                `;
-                } else if (data.resultados && data.resultados.length > 0) {
-                    data.resultados.forEach(item => {
-                        contenedor.innerHTML += `
-                        <div class="card">
-                            <h3>
-                                <span>${item.libro}</span>
-                                <span class="verse-badge">${item.capitulo}:${item.versiculo}</span>
-                            </h3>
-                            <div class="bible-text">
-                                "${item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '')}"
-                            </div>
-                            <div class="explanation">
-                                ${formatearComentario(item.explicacion)}
-                            </div>
-                        </div>
-                    `;
-                    });
-                } else {
-                    contenedor.innerHTML = `
-                    <div class="card" style="border-left-color: #95a5a6; text-align: center; padding: 40px;">
-                        <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🔍</span>
-                        <p style="color: var(--text-muted); font-size: 1.1rem;">No se encontraron resultados para tu búsqueda.</p>
-                    </div>
-                `;
-                }
-            } catch (error) {
-                contenedor.innerHTML = `
-                <div class="card" style="border-left-color: #e74c3c;">
-                    <h3>🔌 Error de Conexión</h3>
-                    <p>No se pudo establecer comunicación con el servidor. Por favor, asegúrate de que el backend esté ejecutándose.</p>
-                </div>
-            `;
-            }
+        // --- HISTORIAL DE BÚSQUEDA ---
+        function agregarAHistorial(texto) {
+            if (!texto || texto.length > 40) return;
+            
+            // Eliminar si ya existía para evitar duplicados y ponerlo al principio
+            historial = historial.filter(h => h.toLowerCase() !== texto.toLowerCase());
+            historial.unshift(texto);
+            
+            // Mantener solo las últimas 5 búsquedas
+            historial = historial.slice(0, 5);
+            
+            localStorage.setItem('biblia_historial', JSON.stringify(historial));
+            actualizarHistorialUI();
         }
 
-        async function cargarAleatorio() {
-            const contenedor = document.getElementById('resultados');
-            contenedor.innerHTML = `
-            <div class="loader">
-                <div class="spinner"></div>
-                <p>Extrayendo versículo aleatorio...</p>
-            </div>
-        `;
+        function actualizarHistorialUI() {
+            const container = document.getElementById('historyContainer');
+            const tagsBox = document.getElementById('historyTags');
+            
+            if (historial.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
 
-            try {
-                const response = await fetch('/aleatorio');
-                const data = await response.json();
-                contenedor.innerHTML = "";
+            tagsBox.innerHTML = "";
+            historial.forEach(item => {
+                const span = document.createElement('span');
+                span.className = 'history-tag';
+                span.textContent = item;
+                span.onclick = () => realizarBusqueda(item);
+                tagsBox.appendChild(span);
+            });
+            
+            container.style.display = 'flex';
+        }
 
-                if (data.error) {
-                    contenedor.innerHTML = `<div class="card" style="border-left-color: #e74c3c;">
-                    <h3>❌ Error de Servidor</h3>
-                    <p>${data.error}</p>
-                </div>`;
-                    return;
+        function clearHistory() {
+            historial = [];
+            localStorage.removeItem('biblia_historial');
+            actualizarHistorialUI();
+        }
+
+        // --- SISTEMA DE FAVORITOS (LOCAL STORAGE) ---
+        function toggleFavorito(item, btn) {
+            const idx = favoritos.findIndex(f => f.id === item.id);
+            if (idx === -1) {
+                favoritos.push(item);
+                btn.classList.add('fav-active');
+            } else {
+                favoritos.splice(idx, 1);
+                btn.classList.remove('fav-active');
+                
+                // Si estamos en la pestaña de favoritos, volver a renderizar la lista inmediatamente
+                if (document.getElementById('section-favorites').classList.contains('active')) {
+                    cargarFavoritosUI();
                 }
+            }
+            localStorage.setItem('biblia_favoritos', JSON.stringify(favoritos));
+        }
 
-                if (data.resultado) {
-                    const item = data.resultado;
-                    // Put the citation name into the search bar
-                    document.getElementById('busqueda').value = `${item.libro} ${item.capitulo}:${item.versiculo}`;
+        function cargarFavoritosUI() {
+            const contenedor = document.getElementById('favoritosList');
+            contenedor.innerHTML = "";
 
-                    contenedor.innerHTML = `
-                    <div class="card">
-                        <h3>
-                            <span>${item.libro}</span>
+            if (favoritos.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="empty-state" style="margin-top: 20px;">
+                        <span>⭐</span>
+                        <p>Aún no tienes versículos guardados en favoritos.</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Presiona el icono de estrella en cualquier versículo para guardarlo aquí.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            favoritos.forEach(item => {
+                const cleanBibleText = item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '');
+                const cardId = `fav-card-${item.id}`;
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.id = cardId;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3>${item.libro}</h3>
+                        <div class="card-meta">
                             <span class="verse-badge">${item.capitulo}:${item.versiculo}</span>
-                        </h3>
-                        <div class="bible-text">
-                            "${item.texto_biblico.replace(/^-\s*"/, '').replace(/"\s*$/, '').replace(/"\s*\([^)]*\)\s*$/, '')}"
-                        </div>
-                        <div class="explanation">
-                            ${formatearComentario(item.explicacion)}
+                            <div class="card-actions">
+                                <button class="action-btn fav-active" onclick="toggleFavorito(${JSON.stringify(item).replace(/"/g, '&quot;')}, this)" title="Quitar de Favoritos">⭐</button>
+                                <button class="action-btn" onclick="shareVerse('${item.libro}', '${item.capitulo}:${item.versiculo}', \`${cleanBibleText}\`, \`${item.explicacion.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" title="Compartir">🔗</button>
+                                <button class="action-btn" onclick="playAudio('${item.libro} ${item.capitulo}:${item.versiculo}', \`${cleanBibleText}\`, \`${item.explicacion.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`)" title="Escuchar">🔊</button>
+                            </div>
                         </div>
                     </div>
+                    <div class="bible-text">
+                        "${cleanBibleText}"
+                    </div>
+                    <div class="explanation">
+                        ${formatearComentario(item.explicacion)}
+                    </div>
                 `;
-                } else {
-                    contenedor.innerHTML = `<p style="text-align: center; padding: 20px;">No se encontraron versículos explicados en la base de datos.</p>`;
+                contenedor.appendChild(card);
+            });
+        }
+
+        // --- SISTEMA AUDIO TEXT-TO-SPEECH (TTS) ---
+        function playAudio(citation, bibleText, explanationText, cardId) {
+            // Detener audio anterior si está reproduciendo
+            if (isAudioPlaying) {
+                stopAudio();
+                if (activeAudioCardId === cardId) {
+                    return; // Si hace clic en el mismo botón de reproducción, simplemente detenlo.
                 }
-            } catch (error) {
-                contenedor.innerHTML = `
-                <div class="card" style="border-left-color: #e74c3c;">
-                    <h3>🔌 Error de Conexión</h3>
-                    <p>No se pudo conectar con el servidor. Verifica que esté activo en el puerto 8051.</p>
-                </div>
-            `;
+            }
+
+            // Preparar el texto completo a narrar
+            // Eliminamos las marcas markdown de negrita
+            const cleanExplanation = explanationText.replace(/\*\*/g, '').replace(/\[EXPLICACION\]|\[CONTEXTO\]|\[APLICACION\]/gi, '');
+            const textoANarrar = `${citation}. ${bibleText}. Explicación: ${cleanExplanation}`;
+
+            activeAudioCardId = cardId;
+            iniciarNarracion(citation, "Versículo y Comentario", textoANarrar);
+        }
+
+        function playAudioIA(tema, rawText, cardId) {
+            if (isAudioPlaying) {
+                stopAudio();
+                if (activeAudioCardId === cardId) return;
+            }
+
+            const cleanText = rawText.replace(/\*\*/g, '').replace(/\[EXPLICACION\]/i, 'Comentario.').replace(/\[CONTEXTO\]/i, 'Contexto Histórico.').replace(/\[APLICACION\]/i, 'Aplicación Práctica.');
+            const textoANarrar = `Explicación sobre ${tema}. ${cleanText}`;
+
+            activeAudioCardId = cardId;
+            iniciarNarracion(tema, "Explicación de IA", textoANarrar);
+        }
+
+        function iniciarNarracion(titulo, subtitulo, texto) {
+            if (!('speechSynthesis' in window)) {
+                alert("Tu navegador no soporta reproducción de voz automática.");
+                return;
+            }
+
+            currentSpeech = new SpeechSynthesisUtterance(texto);
+            currentSpeech.lang = 'es-ES';
+            
+            // Buscar una voz en español
+            const voices = window.speechSynthesis.getVoices();
+            const spanishVoice = voices.find(voice => voice.lang.startsWith('es'));
+            if (spanishVoice) {
+                currentSpeech.voice = spanishVoice;
+            }
+
+            currentSpeech.onend = () => {
+                stopAudio();
+            };
+
+            currentSpeech.onerror = () => {
+                stopAudio();
+            };
+
+            // Actualizar interfaz del reproductor global
+            document.getElementById('audioTitle').textContent = titulo;
+            document.getElementById('audioSubtitle').textContent = subtitulo;
+            document.getElementById('audioPlayPauseBtn').textContent = "⏸️";
+            document.getElementById('globalAudioBar').classList.add('active');
+
+            // Resaltar la tarjeta activa
+            if (activeAudioCardId) {
+                const card = document.getElementById(activeAudioCardId);
+                if (card) card.style.borderColor = "var(--accent-color)";
+            }
+
+            window.speechSynthesis.speak(currentSpeech);
+            isAudioPlaying = true;
+            isAudioPaused = false;
+        }
+
+        function toggleAudioPause() {
+            if (!isAudioPlaying) return;
+
+            const btn = document.getElementById('audioPlayPauseBtn');
+            if (isAudioPaused) {
+                window.speechSynthesis.resume();
+                btn.textContent = "⏸️";
+                isAudioPaused = false;
+                document.querySelector('.sound-wave').style.display = 'flex';
+            } else {
+                window.speechSynthesis.pause();
+                btn.textContent = "▶️";
+                isAudioPaused = true;
+                document.querySelector('.sound-wave').style.display = 'none';
             }
         }
 
-        // Auto-load a random verse on start to make the app interactive
-        window.addEventListener('DOMContentLoaded', () => {
-            cargarAleatorio();
+        function stopAudio() {
+            window.speechSynthesis.cancel();
+            
+            // Ocultar barra de audio
+            document.getElementById('globalAudioBar').classList.remove('active');
+
+            // Restaurar borde de la tarjeta activa
+            if (activeAudioCardId) {
+                const card = document.getElementById(activeAudioCardId);
+                if (card) {
+                    card.style.borderColor = "";
+                }
+            }
+
+            currentSpeech = null;
+            isAudioPlaying = false;
+            isAudioPaused = false;
+            activeAudioCardId = null;
+        }
+
+        // Asegurarse de detener el audio si el usuario sale o recarga la página
+        window.addEventListener('beforeunload', () => {
+            if (isAudioPlaying) {
+                window.speechSynthesis.cancel();
+            }
         });
 
-        // Register Service Worker for PWA download capability
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/static/sw.js')
-                    .then(reg => console.log('PWA Service Worker registrado con éxito!'))
-                    .catch(err => console.log('Error al registrar el PWA Service Worker:', err));
-            });
+        // --- FUNCIÓN COMPARTIR Y COPIAR ---
+        function shareVerse(libro, cita, textoBiblico, explicacion) {
+            const cleanExpl = explicacion.replace(/\*\*/g, '').replace(/\[EXPLICACION\]/i, '\nExplicación:\n').replace(/\[CONTEXTO\]/i, '\nContexto Histórico:\n').replace(/\[APLICACION\]/i, '\nAplicación Práctica:\n');
+            const shareText = `📖 ${libro} ${cita}\n\n"${textoBiblico}"\n\n💡 Explicación:\n${cleanExpl}\n\nCompartido desde Biblia Explicada.`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: `Cita Bíblica: ${libro} ${cita}`,
+                    text: shareText,
+                }).catch(err => {
+                    console.log("Error al compartir:", err);
+                });
+            } else {
+                // Fallback: copiar al portapapeles
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert("¡Cita y explicación copiada al portapapeles! Listo para compartir.");
+                }).catch(err => {
+                    alert("No se pudo copiar el texto automáticamente.");
+                });
+            }
+        }
+
+        // --- MANEJO DE ERRORES ---
+        function mostrarError(mensaje) {
+            const contenedor = document.getElementById('resultados');
+            contenedor.innerHTML = `
+                <div class="card" style="border-left-color: #ef4444;">
+                    <h3 style="color: #ef4444;">🔌 Error de Conexión</h3>
+                    <p>${mensaje}</p>
+                </div>
+            `;
         }
     </script>
 
